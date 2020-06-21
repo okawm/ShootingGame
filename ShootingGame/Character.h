@@ -5,9 +5,11 @@
 #include <glm/gtx/transform.hpp>
 #include <glm/gtx/norm.hpp>
 #include "common/Gamewindow.h"
+#include <vector>
 using namespace glm;
 #include <string>
 using namespace std;
+#include <array>
 
 class Character :GameObject {
 public:
@@ -26,5 +28,5 @@ protected:
 	vec3 mPos;
 	float mSpeed;
 	void draw();
-	void init(const char* vsPath, const char*fsPath, string viewSize);
+	void init(const char* vsPath, const char*fsPath, vector<array<float, 3>> vertexP);
 };

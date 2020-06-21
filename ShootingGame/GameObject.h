@@ -2,6 +2,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <string>
+#include <vector>
+#include <array>
 using namespace std;
 
 class GameObject {
@@ -13,7 +15,7 @@ public:
 
 protected:
 	// viewSize:ウィンドウに表示するサイズ
-    virtual void init(const char* vsPath, const char*fsPath, string viewSize);
+    virtual void init(const char* vsPath, const char*fsPath, vector<array<float, 3>> vertexP);
 	virtual void draw();
 	GLuint mProgram;
 	GLuint mVao;

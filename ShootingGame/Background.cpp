@@ -10,9 +10,13 @@ Background::Background() {
 	////シェーダプログラム読み込み
 	//mProgram = LoadShaders("Shader/Background.vertex", "Shader/Background.fragment");
 
-	////頂点配列オブジェクトの作成
-	//create();
-	init("Shader/Background.vertex", "Shader/Background.fragment", "full");
+	vector<array<float, 3>> vp;
+	array<float, 3> pa;
+	pa = { -1.0f, 1.0f, 0.0f };  vp.push_back(pa);
+	pa = { -1.0f, -1.0f, 0.0f };  vp.push_back(pa);
+	pa = { 1.0f, -1.0f, 0.0f };  vp.push_back(pa);
+	pa = { 1.0f, 1.0f, 0.0f };  vp.push_back(pa);
+	init("Shader/Background.vertex", "Shader/Background.fragment", vp);
 }
 
 Background::~Background() {

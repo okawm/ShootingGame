@@ -3,7 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
 #include <glm/gtx/norm.hpp>
-#include "Character/Camera.h"
+#include "Character/Player/Camera.h"
 
 Character::Character() {
 	mPos = { 0,0,0 };
@@ -55,6 +55,6 @@ void Character::draw() {
 	glBindVertexArray(0);
 }
 
-void Character::init(const char* vsPath, const char*fsPath, string viewSize){
-	GameObject::init(vsPath, fsPath, viewSize);
+void Character::init(const char* vsPath, const char*fsPath, vector<array<float, 3>> vertexP){
+	GameObject::init(vsPath, fsPath, vertexP);
 }

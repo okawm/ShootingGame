@@ -17,54 +17,28 @@ GameObject::~GameObject() {
 }
 
 
-void GameObject::init(const char* vsPath, const char* fsPath, string viewSize) {
+void GameObject::init(const char* vsPath, const char* fsPath, vector<array<float, 3>> vertexP) {
 	//シェーダプログラム読み込み
 	mProgram = LoadShaders(vsPath, fsPath);
+	GLfloat p[12][3];// 配列の要素数は多めに取っている
 
-	if (viewSize == "full") {
-		GLfloat p[][3] = {
-			{-1.0f, 1.0f, 0.0f} ,{-1.0f, -1.0f, 0.0f}, {1.0f, -1.0f, 0.0f}, {1.0f, 1.0f, 0.0f}
-		};
-		
-		glGenVertexArrays(1, &mVao);
-		glBindVertexArray(mVao);
-
-		GLuint vbo;
-		glGenBuffers(1, &vbo);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glBufferData(GL_ARRAY_BUFFER, sizeof p, p, GL_STATIC_DRAW);
-
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-		glEnableVertexAttribArray(0);
+	for (int i = 0; i < vertexP.size(); i++) {
+		for (int j = 0; j < 3; j++) {
+			p[i][j] = vertexP[i][j];
+		}
 	}
-	else if (viewSize == "Player") {
-		//プレイヤー
-		GLfloat p[][3] = {
-			{-1.0f, 1.0f, 1.0f},{1.0f, 1.0f, 1.0f},
-			{1.0f, 1.0f, 1.0f},{0.0f, 1.0f, -1.0f},
-			{0.0f, 1.0f, -1.0f},{-1.0f, 1.0f, 1.0f},
-			{-1.0f, 1.0f, 1.0f},{0.0f, -1.0f, 1.0f},
-			{1.0f, 1.0f, 1.0f},{0.0f, -1.0f, 1.0f},
-			{0.0f, 1.0f, -1.0f},{0.0f, -1.0f, 1.0f }
-		};
-		mVertices = sizeof p / sizeof p[0];
+	mVertices = sizeof p / sizeof p[0];
 
-		//GLuint vao;
-		glGenVertexArrays(1, &mVao);
-		glBindVertexArray(mVao);
+	glGenVertexArrays(1, &mVao);
+	glBindVertexArray(mVao);
 
-		//頂点バッファオブジェクト
-		GLuint vbo;
-		glGenBuffers(1, &vbo);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glBufferData(GL_ARRAY_BUFFER, sizeof p, p, GL_STATIC_DRAW);
+	GLuint vbo;
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof p, p, GL_STATIC_DRAW);
 
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-		glEnableVertexAttribArray(0);
-	}
-	else {
-		fprintf(stderr, "GameObject初期化できませんでした\n");
-	}
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glEnableVertexAttribArray(0);
 }
 
 void GameObject::draw() {
