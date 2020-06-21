@@ -30,10 +30,11 @@ void Game::update() {
 	case SEQ_READY:
 		//mBackground.update();
 		mBackground.update();
-		//mPlayer->update();
 
 		printText2D("Cursor Key to Move", 50, 500, 30);
 		printText2D("Space to Shoot", 50, 400, 30);
+		mPlayer.update();
+
 		break;
 	case SEQ_PLAY:
 		mBackground.update();

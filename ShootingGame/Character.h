@@ -9,7 +9,6 @@ using namespace glm;
 #include <string>
 using namespace std;
 
-// 動かすオブジェクト
 class Character :GameObject {
 public:
 	Character();
@@ -23,9 +22,9 @@ public:
 		mSpeed = speed;
 	}
 private:
-	//void draw();
-
 protected:
 	vec3 mPos;
 	float mSpeed;
+	void draw();
+	void init(const char* vsPath, const char*fsPath, string viewSize);
 };

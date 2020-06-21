@@ -146,6 +146,7 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Character\Camera.h" />
     <ClInclude Include="Character\Player.h" />
     <ClInclude Include="Character\PlayerController.h" />
     <ClInclude Include="GameObject.h" />

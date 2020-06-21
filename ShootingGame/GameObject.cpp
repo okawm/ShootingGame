@@ -5,7 +5,10 @@
 #include <glm/gtx/transform.hpp>
 #include <glm/gtx/norm.hpp>
 #include "common/Gamewindow.h"
+#include <array>
+#include <vector>
 using namespace glm;
+using namespace std;
 GameObject::GameObject() {
 }
 
@@ -22,9 +25,35 @@ void GameObject::init(const char* vsPath, const char* fsPath, string viewSize) {
 		GLfloat p[][3] = {
 			{-1.0f, 1.0f, 0.0f} ,{-1.0f, -1.0f, 0.0f}, {1.0f, -1.0f, 0.0f}, {1.0f, 1.0f, 0.0f}
 		};
+		
 		glGenVertexArrays(1, &mVao);
 		glBindVertexArray(mVao);
 
+		GLuint vbo;
+		glGenBuffers(1, &vbo);
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		glBufferData(GL_ARRAY_BUFFER, sizeof p, p, GL_STATIC_DRAW);
+
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+		glEnableVertexAttribArray(0);
+	}
+	else if (viewSize == "Player") {
+		//プレイヤー
+		GLfloat p[][3] = {
+			{-1.0f, 1.0f, 1.0f},{1.0f, 1.0f, 1.0f},
+			{1.0f, 1.0f, 1.0f},{0.0f, 1.0f, -1.0f},
+			{0.0f, 1.0f, -1.0f},{-1.0f, 1.0f, 1.0f},
+			{-1.0f, 1.0f, 1.0f},{0.0f, -1.0f, 1.0f},
+			{1.0f, 1.0f, 1.0f},{0.0f, -1.0f, 1.0f},
+			{0.0f, 1.0f, -1.0f},{0.0f, -1.0f, 1.0f }
+		};
+		mVertices = sizeof p / sizeof p[0];
+
+		//GLuint vao;
+		glGenVertexArrays(1, &mVao);
+		glBindVertexArray(mVao);
+
+		//頂点バッファオブジェクト
 		GLuint vbo;
 		glGenBuffers(1, &vbo);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);

@@ -1,5 +1,6 @@
 #pragma once
 #include "Background.h"
+#include "Character/Player.h"
 
 enum Sequence {
 	SEQ_TITLE,
@@ -17,4 +18,5 @@ public:
 private:
 	Sequence mSeq;
 	Background mBackground;
+	Player mPlayer;
 };

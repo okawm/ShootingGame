@@ -4,7 +4,6 @@
 #include <string>
 using namespace std;
 
-// ウィンドウに描画するオブジェクト
 class GameObject {
 public:
 	GameObject();
@@ -14,9 +13,8 @@ public:
 
 protected:
 	// viewSize:ウィンドウに表示するサイズ
-    void init(const char* vsPath, const char*fsPath, string viewSize);
+    virtual void init(const char* vsPath, const char*fsPath, string viewSize);
 	virtual void draw();
-private:
 	GLuint mProgram;
 	GLuint mVao;
 	GLuint mVertices;

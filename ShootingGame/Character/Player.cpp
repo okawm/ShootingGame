@@ -9,8 +9,8 @@ Player::Player() {
 	//mBullets = new Bullet[mBulletNum];
 
 	////ˆÊ’u‚È‚Ç‰Šú‰»
-
-	//init("Shader/Player.vertex", "Shader/Player.fragment", "Player");
+	
+	init("Shader/Player.vertex", "Shader/Player.fragment", "Player");
 }
 
 Player::~Player() {
@@ -18,7 +18,7 @@ Player::~Player() {
 }
 
 void Player::update() {
-	//GameObject::draw();
+	draw();
 }
 void Player::shoot() {
 
