@@ -10,7 +10,6 @@
 using namespace glm;
 using namespace std;
 GameObject::GameObject() {
-	mPos = vec3(0, 0, 0);
 }
 
 GameObject::~GameObject() {
@@ -21,7 +20,7 @@ GameObject::~GameObject() {
 void GameObject::init(const char* vsPath, const char* fsPath, Model m) {
 	//シェーダプログラム読み込み
 	mProgram = LoadShaders(vsPath, fsPath);
-	GLfloat p[12][3];// 配列の要素数は多めに取っている
+	GLfloat p[30][3];// 配列の要素数は多めに取っている
 
 	for (int i = 0; i < m.vertexPos.size(); i++) {
 		for (int j = 0; j < 3; j++) {
@@ -44,14 +43,8 @@ void GameObject::init(const char* vsPath, const char* fsPath, Model m) {
 }
 
 void GameObject::setTransform(vec3 pos) {
-	mPos = pos;
-	mModel.modelMatrix = translate(mPos);
-	mModel.modelMatrix *= scale(mScale);
-}
-
-void GameObject::setModelMatrix(vec3 pos, vec3 s) {
-	mModel.modelMatrix = translate(pos);
-	mModel.modelMatrix *= scale(s);
+	mModel.modelMatrix = translate(mModel.pos);
+	mModel.modelMatrix *= scale(mModel.scale);
 }
 
 void GameObject::draw() {

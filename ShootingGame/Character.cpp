@@ -6,7 +6,6 @@
 #include "Character/Player/Camera.h"
 
 Character::Character() {
-	mPos = { 0,0,0 };
 	mSpeed = 1.0f;
 }
 
@@ -15,20 +14,24 @@ Character::~Character() {
 
 void Character::move(string direction) {
 	if (direction == "left") {
-		mPos.x -= mSpeed * 0.1f;
-		setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
+		mModel.pos.x -= mSpeed * 0.1f;
+		setTransform(mModel.pos);
+		//setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
 	}
 	if (direction == "right") {
-		mPos.x += mSpeed * 0.1f;
-		setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
+		mModel.pos.x += mSpeed * 0.1f;
+		setTransform(mModel.pos);
+		//setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
 	}
 	if (direction == "up") {
-		mPos.y += mSpeed * 0.1f;
-		setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
+		mModel.pos.y += mSpeed * 0.1f;
+		setTransform(mModel.pos);
+		//setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
 	}
 	if (direction == "down") {
-		mPos.y -= mSpeed * 0.1f;
-		setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
+		mModel.pos.y -= mSpeed * 0.1f;
+		setTransform(mModel.pos);
+		//setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
 	}
 }
 

@@ -7,6 +7,8 @@
 #include <vector>
 #include "../../common/Model.h"
 #include "../Player/Camera.h"
+#include "TargetControl.h"
+
 using namespace glm;
 
 class Target : Character {
@@ -15,4 +17,5 @@ public:
 	~Target() {};
 	void update();
 private:
+	TargetControl mInput;
 };

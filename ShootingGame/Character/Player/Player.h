@@ -11,6 +11,7 @@
 #include "Camera.h"
 #include "Aim.h"
 #include "PlayerControl.h"
+#include "Bullet.h"
 
 using namespace glm;
 class Player : Character {
@@ -19,8 +20,8 @@ public:
 	~Player();
 	void update();
 	void shoot();
-
 private:
 	Aim mAim;
 	PlayerControl mInput;
+	Bullet mBullet[100];
 };

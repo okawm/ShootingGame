@@ -20,6 +20,8 @@ struct Model {
 	mat4 modelMatrix;
 	mat4 viewMatrix;
 	mat4 projectionMatrix;
+	vec3 scale;
+	vec3 pos;
 	DRAWWING_METHOD drawingMethod;
 };
 

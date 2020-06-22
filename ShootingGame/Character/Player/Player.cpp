@@ -26,6 +26,8 @@ Player::Player() {
 	mat4 mv = lookAt(gCamera.pos, vec3(0.0, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f));//ビュー行列
 	mat4 mp = perspective(radians(45.0f), 1.0f, 0.1f, 1000.0f);//射影行列
 	Model m;
+	m.scale = vec3(5.0f, 5.0f, 5.0f);
+	m.pos = vec3(0.0f, 0.0f, 0.0f);
 	m.drawingMethod = DRAWWING_METHOD::LINE;
 	m.modelMatrix = mm;
 	m.vertexPos = vp;
@@ -44,11 +46,13 @@ Player::~Player() {
 }
 
 void Player::update() {
+	mBullet[0].update();
 	mInput.update();
 	if (mInput.right) { move("right"); }
 	if (mInput.left) { move("left"); }
 	if (mInput.down) { move("down"); }
 	if (mInput.up) { move("up"); }
+	if (mInput.shoot) { shoot(); }
 	draw();
 	vec3 aimPos = getPos();
 	aimPos.y += 5;
@@ -58,5 +62,5 @@ void Player::update() {
 }
 
 void Player::shoot() {
-
+	mBullet[0].set();
 }

@@ -16,7 +16,7 @@ public:
 	~Aim() {};
 	void update();
 	void setPos(vec3 pos) {
-		mPos = pos;
+		mModel.pos = pos;
 	};
 private:
 };
