@@ -19,14 +19,16 @@ public:
 
 	// direction: "left", "right", "up", "down"
 	void move(string direction);
-	void setVelocity(float speed) {
+	void setSpeed(float speed) {
 		mSpeed = speed;
 	}
+	
 private:
 protected:
-	vec3 mPos;
 	float mSpeed;
-
 	void draw();
 	void init(const char* vsPath, const char*fsPath, Model m);
+	vec3 getPos() {
+		return mPos;
+	}
 };

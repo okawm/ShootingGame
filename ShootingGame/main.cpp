@@ -4,6 +4,7 @@
 #include "common/Gamewindow.h"
 #pragma comment(lib, "opengl32.lib")
 #include "Game.h"
+//static GLFWwindow* gwindow;// = glfwCreateWindow(resolution[0], resolution[1], "Shooting Game", NULL, NULL);
 
 int main(void)
 {
@@ -18,16 +19,17 @@ int main(void)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 	//GameWindow* gw = new GameWindow();
-	int windowWidth = 1000;
-	int windowHeight = 1000;
-	gWindow.window = glfwCreateWindow(windowWidth, windowHeight, "Shooting Game", NULL, NULL);
-	if (gWindow.window == NULL) {
+	//nt windowWidth = 1000;
+	//int windowHeight = 1000;
+	//gWindow.window = glfwCreateWindow(windowWidth, windowHeight, "Shooting Game", NULL, NULL);
+	Gamewindow gw = Gamewindow::instance();
+	if (gw.gwindow == NULL) {
 		fprintf(stderr, "ウィンドウ作成失敗");
 		getchar();
 		glfwTerminate();
 		return -1;
 	}
-	glfwMakeContextCurrent(gWindow.window);
+	glfwMakeContextCurrent(gw.gwindow);
 
 	// GLEW初期化
 	glewExperimental = true;
@@ -56,13 +58,13 @@ int main(void)
 			// ウィンドウへの描画はglfwSwapBuffers()の前に行う
 			game.update();
 
-			glfwSwapBuffers(gWindow.window);
+			glfwSwapBuffers(gw.gwindow);
 
 			glfwPollEvents();
 			lastTime = glfwGetTime();
 		}
 
-	} while (glfwGetKey(gWindow.window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(gWindow.window) == 0);
+	} while (glfwGetKey(gw.gwindow, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(gw.gwindow) == 0);
 
 	glfwTerminate();
 

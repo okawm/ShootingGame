@@ -10,6 +10,7 @@
 using namespace glm;
 using namespace std;
 GameObject::GameObject() {
+	mPos = vec3(0, 0, 0);
 }
 
 GameObject::~GameObject() {
@@ -42,6 +43,17 @@ void GameObject::init(const char* vsPath, const char* fsPath, Model m) {
 	mModel = m;
 }
 
+void GameObject::setTransform(vec3 pos) {
+	mPos = pos;
+	mModel.modelMatrix = translate(mPos);
+	mModel.modelMatrix *= scale(mScale);
+}
+
+void GameObject::setModelMatrix(vec3 pos, vec3 s) {
+	mModel.modelMatrix = translate(pos);
+	mModel.modelMatrix *= scale(s);
+}
+
 void GameObject::draw() {
 	//シェーダプログラムの使用開始
 	glUseProgram(mProgram);
@@ -62,7 +74,9 @@ void GameObject::draw() {
 
 	//シェーダへ送る
 	glUniform1f(timeLoc, t);
-	glUniform2fv(resolutionLoc, 1, gWindow.resolution);
+	float resolution[2] = { 1000, 1000 };
+
+	glUniform2fv(resolutionLoc, 1, resolution);
 	glUniformMatrix4fv(mvpLoc, 1, GL_FALSE, &mvp[0][0]);
 
 	// 描画に使う頂点配列オブジェクトの指定
@@ -86,3 +100,4 @@ void GameObject::draw() {
 	//シェーダプログラムの使用終了
 	glUseProgram(0);
 }
+

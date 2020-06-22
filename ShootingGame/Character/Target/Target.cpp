@@ -17,8 +17,8 @@ Target::Target() {
 	//std::random_device rnd;
 	//int x = rnd() % 10;
 	//int y = rnd() % 10;
-	mPos = vec3(0, 0, -100);
-	mat4 mm = translate(mPos);//モデル行列
+	//mPos = vec3(0, 0, -100);
+	mat4 mm = translate(vec3(0,0,-100));//モデル行列
 	//float t = glfwGetTime();
 	//mm *= rotate(t*1.5f, vec3(0.0f, 0.0f, 1.0f));
 	mm *= scale(vec3(5.0f, 5.0f, 1.0f));

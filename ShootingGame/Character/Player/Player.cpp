@@ -9,7 +9,7 @@ Player::Player() {
 	//mBullets = new Bullet[mBulletNum];
 	vector<array<float, 3>> vp;
 	array<float, 3> pa;
-	pa = { -1.0f, 1.0f, 0.0f };  vp.push_back(pa);
+	pa = { -1.0f, 1.0f, 1.0f };  vp.push_back(pa);
 	pa = { 1.0f, 1.0f, 1.0f };  vp.push_back(pa);
 	pa = { 1.0f, 1.0f, 1.0f };  vp.push_back(pa);
 	pa = { 0.0f, 1.0f, -1.0f };  vp.push_back(pa);
@@ -32,6 +32,11 @@ Player::Player() {
 	m.viewMatrix = mv;
 	m.projectionMatrix = mp;
 	init("Shader/Player.vertex", "Shader/Player.fragment", m);
+	vec3 aimPos = getPos();
+	aimPos.y += 5;
+	aimPos.z = -100;
+	mAim.setPos(aimPos);
+	setSpeed(10.0f);
 }
 
 Player::~Player() {
@@ -39,7 +44,17 @@ Player::~Player() {
 }
 
 void Player::update() {
+	mInput.update();
+	if (mInput.right) { move("right"); }
+	if (mInput.left) { move("left"); }
+	if (mInput.down) { move("down"); }
+	if (mInput.up) { move("up"); }
 	draw();
+	vec3 aimPos = getPos();
+	aimPos.y += 5;
+	aimPos.z = -100;
+	mAim.setPos(aimPos);
+	mAim.update();
 }
 
 void Player::shoot() {

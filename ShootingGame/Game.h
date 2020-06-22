@@ -2,6 +2,9 @@
 #include "Background.h"
 #include "Character/Player/Player.h"
 #include "Character/Target/Target.h"
+#include "Character/Player/Aim.h"
+#include "common/Gamewindow.h"
+
 enum Sequence {
 	SEQ_TITLE,
 	SEQ_READY,

@@ -16,15 +16,19 @@ Character::~Character() {
 void Character::move(string direction) {
 	if (direction == "left") {
 		mPos.x -= mSpeed * 0.1f;
+		setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
 	}
 	if (direction == "right") {
 		mPos.x += mSpeed * 0.1f;
+		setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
 	}
 	if (direction == "up") {
 		mPos.y += mSpeed * 0.1f;
+		setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
 	}
 	if (direction == "down") {
 		mPos.y -= mSpeed * 0.1f;
+		setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
 	}
 }
 

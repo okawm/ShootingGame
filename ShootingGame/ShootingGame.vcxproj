@@ -136,8 +136,9 @@
   <ItemGroup>
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Character\Enemy\Enemy.cpp" />
+    <ClCompile Include="Character\Player\Aim.cpp" />
     <ClCompile Include="Character\Player\Player.cpp" />
-    <ClCompile Include="Character\Player\PlayerController.cpp" />
+    <ClCompile Include="Character\Player\PlayerControl.cpp" />
     <ClCompile Include="Character\Target\Target.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="common\Tex2D.cpp" />
@@ -151,9 +152,10 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Character\Enemy\Enemy.h" />
+    <ClInclude Include="Character\Player\Aim.h" />
     <ClInclude Include="Character\Player\Camera.h" />
     <ClInclude Include="Character\Player\Player.h" />
-    <ClInclude Include="Character\Player\PlayerController.h" />
+    <ClInclude Include="Character\Player\PlayerControl.h" />
     <ClInclude Include="Character\Target\Target.h" />
     <ClInclude Include="common\Model.h" />
     <ClInclude Include="GameObject.h" />

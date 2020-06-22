@@ -1,26 +1,22 @@
 #pragma once
 #include "../../GameObject.h"
-#include "../../Character.h"
-#include <vector>
-#include <array>
+#include "../../common/Model.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
 #include <glm/gtx/norm.hpp>
-#include "../../common/Model.h"
+#include <vector>
 #include "Camera.h"
-#include "Aim.h"
-#include "PlayerControl.h"
-
+#include <iostream>
 using namespace glm;
-class Player : Character {
-public:
-	Player();
-	~Player();
-	void update();
-	void shoot();
 
+class Aim : GameObject{
+public:
+	Aim();
+	~Aim() {};
+	void update();
+	void setPos(vec3 pos) {
+		mPos = pos;
+	};
 private:
-	Aim mAim;
-	PlayerControl mInput;
 };
