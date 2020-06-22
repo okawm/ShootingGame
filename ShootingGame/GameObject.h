@@ -4,6 +4,12 @@
 #include <string>
 #include <vector>
 #include <array>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtx/norm.hpp>
+#include "common/Model.h"
+using namespace glm;
 using namespace std;
 
 class GameObject {
@@ -15,9 +21,11 @@ public:
 
 protected:
 	// viewSize:ウィンドウに表示するサイズ
-    virtual void init(const char* vsPath, const char*fsPath, vector<array<float, 3>> vertexP);
+    virtual void init(const char* vsPath, const char*fsPath, Model m);
 	virtual void draw();
 	GLuint mProgram;
 	GLuint mVao;
 	GLuint mVertices;
+	mat4 mModelMatrix;
+	Model mModel;
 };

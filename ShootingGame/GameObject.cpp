@@ -17,14 +17,14 @@ GameObject::~GameObject() {
 }
 
 
-void GameObject::init(const char* vsPath, const char* fsPath, vector<array<float, 3>> vertexP) {
+void GameObject::init(const char* vsPath, const char* fsPath, Model m) {
 	//シェーダプログラム読み込み
 	mProgram = LoadShaders(vsPath, fsPath);
 	GLfloat p[12][3];// 配列の要素数は多めに取っている
 
-	for (int i = 0; i < vertexP.size(); i++) {
+	for (int i = 0; i < m.vertexPos.size(); i++) {
 		for (int j = 0; j < 3; j++) {
-			p[i][j] = vertexP[i][j];
+			p[i][j] = m.vertexPos[i][j];
 		}
 	}
 	mVertices = sizeof p / sizeof p[0];
@@ -39,6 +39,7 @@ void GameObject::init(const char* vsPath, const char* fsPath, vector<array<float
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
+	mModel = m;
 }
 
 void GameObject::draw() {
@@ -49,10 +50,9 @@ void GameObject::draw() {
 	float t(glfwGetTime());
 
 	//変換行列の計算
-	mat4 mm = translate(vec3(0.0f, 0.0f, -100.0f));//モデル行列
-	mm *= scale(vec3(100.0f, 100.0f, 100.0f));
-	mat4 mv = lookAt(vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f));//ビュー行列
-	mat4 mp = perspective(radians(45.0f), gWindow.resolution[0] / gWindow.resolution[1], 0.1f, 200.0f);//プロジェクション(射影)行列
+	mat4 mm = mModel.modelMatrix;
+	mat4 mv = mModel.viewMatrix;//lookAt(vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f));//ビュー行列
+	mat4 mp = mModel.projectionMatrix;//perspective(radians(45.0f), gWindow.resolution[0] / gWindow.resolution[1], 0.1f, 200.0f);//プロジェクション(射影)行列
 	mat4 mvp = mp * mv * mm;//モデルビュー射影行列
 
 	//シェーダのuniform変数
@@ -69,7 +69,16 @@ void GameObject::draw() {
 	glBindVertexArray(mVao);
 
 	//描画
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+	if (mModel.drawingMethod == DRAWWING_METHOD::LINE) {
+		glDrawArrays(GL_LINES, 0, mVertices);
+	}
+	if (mModel.drawingMethod == DRAWWING_METHOD::TRIANGLE) {
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+	}
+	//vao指
+	if (mModel.drawingMethod == DRAWWING_METHOD::TRIANGLE_FAN) {
+		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+	}
 
 	// 頂点配列オブジェクトの指定解除
 	glBindVertexArray(0);

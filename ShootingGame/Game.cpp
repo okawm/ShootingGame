@@ -4,7 +4,7 @@
 
 Game::Game() {
 	//mBackground = new Background();
-	mSeq = SEQ_READY;
+	mSeq = SEQ_END;
 	//ÉtÉHÉìÉgì«Ç›çûÇﬁ
 	initText2D("Texture/Font.DDS");
 }
@@ -14,6 +14,8 @@ Game::~Game() {
 }
 
 void Game::update() {
+	static int score = 0;
+
 	switch (mSeq) {
 	case SEQ_TITLE:
 		mBackground.update();
@@ -28,19 +30,29 @@ void Game::update() {
 		//}		
 		break;
 	case SEQ_READY:
-		//mBackground.update();
 		mBackground.update();
+		mPlayer.update();
 
 		printText2D("Cursor Key to Move", 50, 500, 30);
 		printText2D("Space to Shoot", 50, 400, 30);
-		mPlayer.update();
 
 		break;
 	case SEQ_PLAY:
 		mBackground.update();
+		mTarget.update();
+		mPlayer.update();
+
+		char text[256];
+		sprintf_s(text, "Score:%d", score);
+		printText2D(text, 0, 550, 30);
 		break;
 	case SEQ_END:
 		mBackground.update();
+
+		char text2[256];
+		sprintf_s(text2, "Score is %d", score);
+		printText2D(text2, 50, 300, 30);
+		printText2D("Press Enter to Return Title", 50, 100, 20);
 		break;
 	}
 }

@@ -10,13 +10,12 @@ using namespace glm;
 #include <string>
 using namespace std;
 #include <array>
+#include "common/Model.h"
 
 class Character :GameObject {
 public:
 	Character();
 	~Character();
-
-	//void update();
 
 	// direction: "left", "right", "up", "down"
 	void move(string direction);
@@ -27,6 +26,7 @@ private:
 protected:
 	vec3 mPos;
 	float mSpeed;
+
 	void draw();
-	void init(const char* vsPath, const char*fsPath, vector<array<float, 3>> vertexP);
+	void init(const char* vsPath, const char*fsPath, Model m);
 };
