@@ -18,14 +18,21 @@ public:
 	~GameObject();
 
 	virtual void update() = 0;
+	vec3 getPos() {
+		return mModel.pos;
+	}
+	
 protected:
     virtual void init(const char* vsPath, const char*fsPath, Model m);
 	virtual void draw();
+
 	void setTransform(vec3 pos);
+	bool collide(vec3 pos);
 
 	GLuint mProgram;
 	GLuint mVao;
 	GLuint mVertices;
 	mat4 mModelMatrix;
 	Model mModel;
+private:
 };

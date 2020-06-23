@@ -1,6 +1,7 @@
 #include "Bullet.h"
-
-Bullet::Bullet() : visible(false),countVisible(0){
+#include "../../Manager.h"
+#include <iostream>
+Bullet::Bullet() : mVisible(false),mLifeCount(50), mSpeed(4.0f){
 	vector<array<float, 3>> vp;
 	array<float, 3> pa;
 	pa = { -1.0f, 1.0f, 0.7f }; vp.push_back(pa);
@@ -40,18 +41,22 @@ Bullet::Bullet() : visible(false),countVisible(0){
 }
 
 void Bullet::set(vec3 playerPos) {
-	visible = true;
+	mVisible = true;
 	mModel.pos = playerPos;
 	mModel.pos.y += 5.0f;
-	countVisible = 0;
 	setTransform(mModel.pos);
 }
 void Bullet::update() {
-	if (visible) {
-		countVisible++;
-		mModel.pos.z -= 2.0f;
+	if (mVisible) {
+		static int count = 0;
+		if (collide(Manager::instance().getTarget()->getPos())) {
+			mVisible = false;
+  			Manager::instance().getTarget()->hit();
+		}
+		mModel.pos.z -= mSpeed;
 		setTransform(mModel.pos);
 		draw();
-		if (countVisible > 50) { visible = false; }
+		if (count > mLifeCount) { mVisible = false; count = 0; }
+		count++;
 	}
 }

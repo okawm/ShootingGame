@@ -12,16 +12,20 @@
 #include "Aim.h"
 #include "PlayerControl.h"
 #include "Bullet.h"
-
+#include <iostream>
 using namespace glm;
+
 class Player : Character {
 public:
 	Player();
 	~Player();
 	void update();
 	void shoot();
+	vec3 getPos() {
+		return Character::getPos();
+	}
 private:
 	Aim mAim;
 	PlayerControl mInput;
-	array<Bullet, 50> mBullets;
+	std::array<Bullet, 50> mBullets;
 };

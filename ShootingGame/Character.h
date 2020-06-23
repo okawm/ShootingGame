@@ -17,19 +17,26 @@ public:
 	Character();
 	~Character();
 
-	
-	
+	void setHit(bool b) {
+		mCollided = b;
+	}
 private:
 protected:
-	float mSpeed;
 	void draw();
 	void init(const char* vsPath, const char*fsPath, Model m);
+
 	// direction: "left", "right", "up", "down"
 	void move(string direction);
+
+	void setRandomPos(vec3 pos);
 	void setSpeed(float speed) {
 		mSpeed = speed;
 	}
 	vec3 getPos() {
 		return mModel.pos;
 	}
+	
+	float mSpeed;
+	bool mCollided;
+
 };

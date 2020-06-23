@@ -16,6 +16,12 @@ public:
 	Target();
 	~Target() {};
 	void update();
+	vec3 getPos() {
+		return Character::getPos();
+	}
+	void hit() {
+		mCollided = true;
+	}
 private:
 	TargetControl mInput;
 };

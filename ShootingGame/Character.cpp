@@ -5,7 +5,7 @@
 #include <glm/gtx/norm.hpp>
 #include "Character/Player/Camera.h"
 
-Character::Character() {
+Character::Character() : mCollided(false){
 	mSpeed = 1.0f;
 }
 
@@ -16,25 +16,25 @@ void Character::move(string direction) {
 	if (direction == "left") {
 		mModel.pos.x -= mSpeed * 0.1f;
 		setTransform(mModel.pos);
-		//setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
 	}
 	if (direction == "right") {
 		mModel.pos.x += mSpeed * 0.1f;
 		setTransform(mModel.pos);
-		//setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
 	}
 	if (direction == "up") {
 		mModel.pos.y += mSpeed * 0.1f;
 		setTransform(mModel.pos);
-		//setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
 	}
 	if (direction == "down") {
 		mModel.pos.y -= mSpeed * 0.1f;
 		setTransform(mModel.pos);
-		//setModelMatrix(mPos, vec3(5.0f, 5.0f, 5.0f));
 	}
 }
 
+void Character::setRandomPos(vec3 pos) {
+	mModel.pos = pos;
+	setTransform(mModel.pos);
+}
 void Character::draw() {
 	GameObject::draw();
 }

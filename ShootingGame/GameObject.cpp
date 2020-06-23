@@ -94,3 +94,9 @@ void GameObject::draw() {
 	glUseProgram(0);
 }
 
+bool GameObject::collide(vec3 pos) {
+	if (distance(getPos(), pos) >= -6 && distance(getPos(), pos) <= 6) {
+		return true;
+	}
+	return false;
+}

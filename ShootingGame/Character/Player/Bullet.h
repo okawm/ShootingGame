@@ -14,9 +14,10 @@ public:
 	void update();
 	void set(vec3  playerPos);
 	bool getVisible() {
-		return visible;
+		return mVisible;
 	}
 private:
-	bool visible;
-	int countVisible;
+	bool mVisible;
+	int mLifeCount;
+	float mSpeed;
 };

@@ -4,6 +4,7 @@
 #include "Character/Target/Target.h"
 #include "Character/Player/Aim.h"
 #include "common/Gamewindow.h"
+#include "Manager.h"
 
 enum Sequence {
 	SEQ_TITLE,
@@ -18,9 +19,8 @@ public:
 	Game();
 	~Game();
 	void update();
+	
 private:
 	Sequence mSeq;
 	Background mBackground;
-	Player mPlayer;
-	Target mTarget;
 };

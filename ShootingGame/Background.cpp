@@ -7,25 +7,19 @@
 using namespace glm;
 
 Background::Background() {
-	////シェーダプログラム読み込み
-	//mProgram = LoadShaders("Shader/Background.vertex", "Shader/Background.fragment");
-
 	vector<array<float, 3>> vp;
 	array<float, 3> pa;
 	pa = { -1.0f, 1.0f, 0.0f };  vp.push_back(pa);
 	pa = { -1.0f, -1.0f, 0.0f };  vp.push_back(pa);
 	pa = { 1.0f, -1.0f, 0.0f };  vp.push_back(pa);
 	pa = { 1.0f, 1.0f, 0.0f };  vp.push_back(pa);
-	mat4 mm = translate(vec3(0.0f, 0.0f, -100.0f));//モデル行列
-	mm *= scale(vec3(100.0f, 100.0f, 100.0f));
-	mat4 mv = lookAt(vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f));//ビュー行列
-	mat4 mp = perspective(radians(45.0f), 1.0f, 0.1f, 200.0f);//プロジェクション(射影)行列
 	Model m;
 	m.vertexPos = vp;
-	m.modelMatrix = mm;
+	m.modelMatrix = translate(vec3(0.0f, 0.0f, -100.0f));
+	m.modelMatrix *= scale(vec3(100.0f, 100.0f, 100.0f));
 	m.drawingMethod = DRAWWING_METHOD::TRIANGLE_FAN;
-	m.viewMatrix = mv;
-	m.projectionMatrix = mp;
+	m.viewMatrix = lookAt(vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f));;
+	m.projectionMatrix = perspective(radians(45.0f), 1.0f, 0.1f, 200.0f);;
 	init("Shader/Background.vertex", "Shader/Background.fragment", m);
 }
 

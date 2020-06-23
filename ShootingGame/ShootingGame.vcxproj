@@ -163,6 +163,7 @@
     <ClInclude Include="Character\Player\PlayerControl.h" />
     <ClInclude Include="Character\Target\Target.h" />
     <ClInclude Include="Character\Target\TargetControl.h" />
+    <ClInclude Include="Manager.h" />
     <ClInclude Include="common\Model.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="common\Tex2D.h" />
