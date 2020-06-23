@@ -37,9 +37,15 @@ Bullet::Bullet() : visible(false),countVisible(0){
 	model.viewMatrix = lookAt(gCamera.pos, vec3(0.0, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f));//ÉrÉÖÅ[çsóÒ
 	model.projectionMatrix = perspective(radians(45.0f), 1.0f, 0.1f, 1000.0f);
 	init("Shader/Bullet.vertex", "Shader/Bullet.fragment", model);
-
 }
 
+void Bullet::set(vec3 playerPos) {
+	visible = true;
+	mModel.pos = playerPos;
+	mModel.pos.y += 5.0f;
+	countVisible = 0;
+	setTransform(mModel.pos);
+}
 void Bullet::update() {
 	if (visible) {
 		countVisible++;

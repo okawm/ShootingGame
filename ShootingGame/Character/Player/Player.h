@@ -23,5 +23,5 @@ public:
 private:
 	Aim mAim;
 	PlayerControl mInput;
-	Bullet mBullet[100];
+	array<Bullet, 50> mBullets;
 };

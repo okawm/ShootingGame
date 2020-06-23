@@ -46,21 +46,34 @@ Player::~Player() {
 }
 
 void Player::update() {
-	mBullet[0].update();
+	draw();
+
+	// ì¸óÕ
 	mInput.update();
 	if (mInput.right) { move("right"); }
 	if (mInput.left) { move("left"); }
 	if (mInput.down) { move("down"); }
 	if (mInput.up) { move("up"); }
 	if (mInput.shoot) { shoot(); }
-	draw();
+
+	// è∆èÄ
 	vec3 aimPos = getPos();
 	aimPos.y += 5;
 	aimPos.z = -100;
 	mAim.setPos(aimPos);
 	mAim.update();
+
+	// íe
+	for (int i = 0; i < mBullets.size(); ++i) {
+		mBullets[i].update();
+	}
 }
 
 void Player::shoot() {
-	mBullet[0].set();
+	for (int i = 0; i < mBullets.size(); ++i) {
+		if (!mBullets[i].getVisible()) {
+			mBullets[i].set(getPos());
+			break;
+		}
+	}
 }
