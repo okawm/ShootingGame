@@ -14,12 +14,7 @@ public:
 	Target* getTarget() {
 		return mTarget;
 	}
-	void setData(int d) {
-		data = d;
-	}
-	void print() {
-		std::cout << data;
-	}
+
 	~Manager() {
 		delete mPlayer;
 		delete mTarget;
@@ -29,7 +24,6 @@ private:
 		mPlayer = new Player();
 		mTarget = new Target();
 	}
-	int data;
 	Player* mPlayer;
 	Target* mTarget;
 };

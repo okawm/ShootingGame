@@ -5,6 +5,7 @@
 #include "Character/Player/Aim.h"
 #include "common/Gamewindow.h"
 #include "Manager.h"
+#include "string"
 
 enum Sequence {
 	SEQ_TITLE,
@@ -19,7 +20,6 @@ public:
 	Game();
 	~Game();
 	void update();
-	
 private:
 	Sequence mSeq;
 	Background mBackground;

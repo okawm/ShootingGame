@@ -1,6 +1,7 @@
 #include "Target.h"
 #include <random>
 #include <iostream>
+#include "../../Score.h"
 
 Target::Target() {
 	vector<array<float, 3>> vp;
@@ -28,6 +29,7 @@ void Target::update() {
 	}
 	draw();
 	if (mCollided) {
+		Score::instance().score(10, "add");
 		float randomPos[10] = { 10.0f, -10.0f, 21.0f, -7.0f, 14.0f, -9.0f, 23.0f, -11.0f, 2.0f, -4.0f };
 		std::random_device rnd;
 		int x = rnd() % 10;
