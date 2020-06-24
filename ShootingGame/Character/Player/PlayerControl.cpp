@@ -1,28 +1,28 @@
 #include "PlayerControl.h"
 
 PlayerControl::PlayerControl() : 
-left(false),right(false),up(false),down(false),shoot(false){
+mLeft(false),mRight(false),mUp(false),mDown(false),mShoot(false){
 }
 void PlayerControl::update() {
-	left = false;
-	right = false;
-	up = false;
-	down = false;
-	shoot = false;
+	mLeft = false;
+	mRight = false;
+	mUp = false;
+	mDown = false;
+	mShoot = false;
 	Gamewindow gw = Gamewindow::instance();
 	if (glfwGetKey(gw.gwindow, GLFW_KEY_SPACE) == GLFW_PRESS) {
-		shoot = true;
+		mShoot = true;
 	}
 	if (glfwGetKey(gw.gwindow, GLFW_KEY_LEFT) == GLFW_PRESS) {
-		left = true;
+		mLeft = true;
 	}
 	if (glfwGetKey(gw.gwindow, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-		right = true;
+		mRight = true;
 	}
 	if (glfwGetKey(gw.gwindow, GLFW_KEY_UP) == GLFW_PRESS) {
-		up = true;
+		mUp = true;
 	}
 	if (glfwGetKey(gw.gwindow, GLFW_KEY_DOWN) == GLFW_PRESS) {
-		down = true;
+		mDown = true;
 	}
 }

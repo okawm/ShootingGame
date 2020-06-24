@@ -7,11 +7,14 @@ class PlayerControl {
 public:
 	PlayerControl();
 	~PlayerControl() {};
+
 	void update();
-	bool left;
-	bool right;
-	bool up;
-	bool down;
-	bool shoot;
+
+	bool left() { return mLeft; }
+	bool right() { return mRight; }
+	bool up() { return mUp; }
+	bool down(){ return mDown; }
+	bool shoot(){ return mShoot; }
 private:
+	bool mLeft, mRight, mUp, mDown, mShoot;
 };

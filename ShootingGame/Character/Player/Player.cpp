@@ -40,11 +40,11 @@ void Player::update() {
 
 	// ì¸óÕ
 	mInput.update();
-	if (mInput.right) { move("right"); }
-	if (mInput.left) { move("left"); }
-	if (mInput.down) { move("down"); }
-	if (mInput.up) { move("up"); }
-	if (mInput.shoot) { shoot(); }
+	if (mInput.right()) { move("right"); }
+	if (mInput.left()) { move("left"); }
+	if (mInput.down()) { move("down"); }
+	if (mInput.up()) { move("up"); }
+	if (mInput.shoot()) { shoot(); }
 
 	// è∆èÄ
 	vec3 aimPos = getPos();
