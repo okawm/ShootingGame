@@ -19,9 +19,8 @@ public:
 	vec3 getPos() {
 		return Character::getPos();
 	}
-	void hit() {
-		mCollided = true;
-	}
+	// Target‚ÆBullet‚ªÕ“Ë‚µ‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚é
+	void hit();
 private:
 	TargetControl mInput;
 };

@@ -13,7 +13,7 @@ Game::~Game() {
 }
 
 void Game::update() {
-	static int timer = 600;
+	static int timer = 1800;
 	switch (mSeq) {
 	case SEQ_TITLE:
 		mBackground.update();
@@ -53,7 +53,7 @@ void Game::update() {
 			timer = 0;
 		}		
 		sprintf_s(text, "Time:%d", timer);
-		printText2D(text, 550, 550, 30);
+		printText2D(text, 500, 550, 30);
 
 		if (glfwGetKey(Gamewindow::instance().gwindow, GLFW_KEY_ENTER) == GLFW_PRESS) {
 			mSeq = SEQ_END;

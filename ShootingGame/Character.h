@@ -17,9 +17,6 @@ public:
 	Character();
 	~Character();
 
-	void setHit(bool b) {
-		mCollided = b;
-	}
 private:
 protected:
 	void draw();
@@ -29,14 +26,16 @@ protected:
 	void move(string direction);
 
 	void setRandomPos(vec3 pos);
-	void setSpeed(float speed) {
-		mSpeed = speed;
+
+
+	void setSpeed(float speed, string mode) {
+		if ("set") { mSpeed = speed; }
+		if ("add") { mSpeed += speed; }
 	}
 	vec3 getPos() {
 		return mModel.pos;
 	}
 	
 	float mSpeed;
-	bool mCollided;
 
 };

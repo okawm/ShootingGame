@@ -29,7 +29,7 @@ Player::Player() {
 	aimPos.y += 5;
 	aimPos.z = -100;
 	mAim.setPos(aimPos);
-	setSpeed(10.0f);
+	setSpeed(5.0f, "set");
 }
 
 Player::~Player() {

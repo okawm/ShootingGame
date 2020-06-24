@@ -23,19 +23,38 @@ Target::Target() {
 }
 
 void Target::update() {
-	mInput.update();
-	if (mInput.down) {
+	draw();
+
+	mInput.update(getPos());
+	if (mInput.down()) {
 		Character::move("down");
 	}
-	draw();
-	if (mCollided) {
-		Score::instance().score(10, "add");
-		float randomPos[10] = { 10.0f, -10.0f, 21.0f, -7.0f, 14.0f, -9.0f, 23.0f, -11.0f, 2.0f, -4.0f };
-		std::random_device rnd;
-		int x = rnd() % 10;
-		int y = rnd() % 10;
-		vec3 p = vec3(randomPos[x], randomPos[y], -100);
-		Character::setRandomPos(p);
-		mCollided = false;
+	if (mInput.up()) {
+		Character::move("up");
 	}
+	if (mInput.left()) {
+		Character::move("left");
+	}
+	if (mInput.right()) {
+		Character::move("right");
+	}
+}
+
+void Target::hit() {
+	// スコア加算
+	Score::instance().score(10, "add");
+
+	// Targetの位置をランダムに初期化
+	random_device seed_gen;
+	mt19937 engine(seed_gen());
+	normal_distribution<> dist(0, 19);
+	float rx = dist(engine);
+	float ry = dist(engine);
+	Character::setRandomPos(vec3(rx, ry, -100));
+
+	// Targetの動きを変える
+	mInput.changeMove();
+
+	// スピードを速くする
+	setSpeed(1.5, "add");
 }

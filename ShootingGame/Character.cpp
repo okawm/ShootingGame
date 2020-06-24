@@ -5,8 +5,7 @@
 #include <glm/gtx/norm.hpp>
 #include "Character/Player/Camera.h"
 
-Character::Character() : mCollided(false){
-	mSpeed = 1.0f;
+Character::Character() :mSpeed(1.0f){
 }
 
 Character::~Character() {
